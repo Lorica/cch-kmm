@@ -9,6 +9,10 @@ import io.ktor.serialization.kotlinx.json.json
 import kotlinx.serialization.json.Json
 
 class GithubRepositoryImpl(private val keyPantry: KeyPantry) : GithubRepository {
+    companion object {
+        private const val FAVOURITES_KEY = "favourites"
+    }
+
     private val client = HttpClient() {
         install(ContentNegotiation) {
             json(Json {
@@ -23,9 +27,19 @@ class GithubRepositoryImpl(private val keyPantry: KeyPantry) : GithubRepository 
         return response.body()
     }
 
-    override fun getFavourites() = keyPantry.fetchFavourites()
+    override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY)
 
-    override fun addToFavourites(id: Int) = keyPantry.saveFavourites(id)
+    override fun addToFavourites(id: Int) {
+        val favourites = keyPantry.fetchIntArray(FAVOURITES_KEY).toMutableList()
+        favourites.add(id)
 
-    override fun removeFromFavourites(id: Int) = keyPantry.removeFavourites(id)
+        keyPantry.saveIntArray(FAVOURITES_KEY, favourites.toTypedArray())
+    }
+
+    override fun removeFromFavourites(id: Int) {
+        val favourites = keyPantry.fetchIntArray(FAVOURITES_KEY).toMutableList()
+        favourites.remove(id)
+
+        keyPantry.saveIntArray(FAVOURITES_KEY, favourites.toTypedArray())
+    }
 }

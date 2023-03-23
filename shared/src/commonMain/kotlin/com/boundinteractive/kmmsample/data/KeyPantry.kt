@@ -1,7 +1,8 @@
 package com.boundinteractive.kmmsample.data
 
 expect class KeyPantry {
-    fun fetchFavourites(): List<Int>
-    fun saveFavourites(id: Int)
-    fun removeFavourites(id: Int)
+    fun fetchString(key: String): String?
+    fun saveString(key: String, value: String)
+    fun saveIntArray(key: String, value: Array<Int>)
+    fun fetchIntArray(key: String): Array<Int>
 }
