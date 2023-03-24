@@ -7,4 +7,5 @@ interface GithubRepository {
     fun getFavourites(): Array<Int>
     fun addToFavourites(id: Int)
     fun removeFromFavourites(id: Int)
+    fun removeAllFavourites()
 }

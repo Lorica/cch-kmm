@@ -42,4 +42,8 @@ class GithubRepositoryImpl(private val keyPantry: KeyPantry) : GithubRepository 
 
         keyPantry.saveIntArray(FAVOURITES_KEY, favourites.toTypedArray())
     }
+
+    override fun removeAllFavourites() {
+        keyPantry.saveIntArray(FAVOURITES_KEY, emptyArray())
+    }
 }

@@ -5,4 +5,5 @@ expect class KeyPantry {
     fun saveString(key: String, value: String)
     fun saveIntArray(key: String, value: Array<Int>)
     fun fetchIntArray(key: String): Array<Int>
+    fun clearAll()
 }
