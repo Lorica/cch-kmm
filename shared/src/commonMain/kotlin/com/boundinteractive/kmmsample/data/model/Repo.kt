@@ -29,7 +29,7 @@ data class Repo(
     fun updatedAt() = _updatedAt.toFormattedDate(TimeZone.currentSystemDefault())
 
     val accessibilityString = "A repo called $name that has $forkCount forks and " +
-            "$watcherCount watchers that was created in ${createdAt()}"
+            "$watcherCount watchers that was last updated in ${updatedAt()}"
 }
 
 @Serializable

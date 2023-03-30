@@ -2,8 +2,8 @@ package com.boundinteractive.kmmsample.usecase
 
 import com.boundinteractive.kmmsample.data.GithubRepository
 
-class FavouritesUseCase(private val githubRepository: GithubRepository) {
-    fun fetch(): Array<Int> = githubRepository.getFavourites()
+open class FavouritesUseCase(private val githubRepository: GithubRepository) {
+    fun fetch(): List<Int> = githubRepository.getFavourites()
 
     fun add(id: Int) = githubRepository.addToFavourites(id)
 

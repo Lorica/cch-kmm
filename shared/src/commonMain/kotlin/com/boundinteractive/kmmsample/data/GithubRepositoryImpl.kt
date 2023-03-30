@@ -27,7 +27,7 @@ class GithubRepositoryImpl(private val keyPantry: KeyPantry) : GithubRepository 
         return response.body()
     }
 
-    override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY)
+    override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY).toList()
 
     override fun addToFavourites(id: Int) {
         val favourites = keyPantry.fetchIntArray(FAVOURITES_KEY).toMutableList()
