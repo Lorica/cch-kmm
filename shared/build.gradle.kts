@@ -29,6 +29,7 @@ kotlin {
 
     sourceSets {
         val ktorVersion = "2.2.4"
+        val coroutinesVersion = "1.6.4"
         val commonMain by getting {
             dependencies {
                 // Ktor
@@ -40,6 +41,9 @@ kotlin {
                 // Serialization
                 implementation("org.jetbrains.kotlinx:kotlinx-serialization-core:1.4.1")
                 implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
+
+                //Coroutines
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
             }
