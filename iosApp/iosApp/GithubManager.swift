@@ -19,8 +19,14 @@ struct GithubManager {
     }
     
     func loadData() async throws -> [CellModel]? {
-        let models = try await githubUseCase.invoke()
-        return models.map { model in CellModel.convert(from: model) }
+        let result = try await githubUseCase.invoke()
+        if let models = ResultHelper.extractBasicResultSuccess(result) {
+            return models.map { model in CellModel.convert(from: model as! Repo) }
+        } else if let error = ResultHelper.extractBasicResultError(result) {
+            print("Error: \(error.description())")
+            throw error.toAppError()
+        }
+        return nil
     }
     
     func saveFavorite(id: Int) {
@@ -35,6 +41,23 @@ struct GithubManager {
         let allFaves = favUseCase.fetch()
         return allFaves.contains { kotlinId in
             KotlinInt(int: Int32(id)) == kotlinId
+        }
+    }
+}
+
+enum AppError: Error, Hashable, CustomStringConvertible {
+    case client
+    case server
+    case generic
+    
+    var description: String {
+        switch self {
+        case .client:
+            return "There was an error in the client"
+        case .server:
+            return "There was an error in the server"
+        case .generic:
+            return "There was a generic error"
         }
     }
 }
@@ -75,8 +98,8 @@ class MockFavouritesUseCase: FavouritesUseCase {
 class MockFetchGithubReposUseCase: FetchGithubReposUseCase {
     var isCalled: Bool = false
     
-    override func invoke() async throws -> [Repo] {
+    override func invoke() async throws -> BasicResult<NSArray> {
         isCalled = true
-        return [Repo(id: 1, name: "test", forkCount: 2, description: "test", watcherCount: 0, _createdAt: "testDate", _updatedAt: "testDate", owner: Owner(avatarUrl: "testUrl"))]
+        return BasicResultSuccess(value: [Repo(id: 1, name: "test", forkCount: 2, description: "test", watcherCount: 0, _createdAt: "testDate", _updatedAt: "testDate", owner: Owner(avatarUrl: "testUrl"))])
     }
 }

@@ -30,6 +30,7 @@ kotlin {
     sourceSets {
         val ktorVersion = "2.2.4"
         val coroutinesVersion = "1.6.4"
+        val kermitVersion = "2.0.0-RC3"
         val commonMain by getting {
             dependencies {
                 // Ktor
@@ -44,6 +45,9 @@ kotlin {
 
                 //Coroutines
                 implementation("org.jetbrains.kotlinx:kotlinx-coroutines-core:$coroutinesVersion")
+
+                // Logging
+                implementation("co.touchlab:kermit:$kermitVersion")
 
                 implementation("org.jetbrains.kotlinx:kotlinx-datetime:0.4.0")
             }

@@ -21,7 +21,6 @@ data class Repo(
     private val _createdAt: String,
     @SerialName("updated_at")
     private val _updatedAt: String,
-    @SerialName("owner")
     val owner: Owner,
 ) {
     val avatarUrl = owner.avatarUrl
