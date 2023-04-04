@@ -10,7 +10,7 @@ import Foundation
 
 @MainActor
 final class ContentViewModel: ObservableObject {
-    @Published var viewState: ViewState<[CellModel]> = .loading
+    @Published var viewState: ViewState<[CellViewModel]> = .loading
     private let manager: GithubManager
     
     init(manager: GithubManager) {
@@ -20,7 +20,7 @@ final class ContentViewModel: ObservableObject {
     func loadData() async {
         do {
             if let cellModels = try await manager.loadData() {
-                viewState = .success(result: cellModels)
+                viewState = .success(result: cellModels.map { CellViewModel(model: $0, manager: manager) })
             } else {
                 viewState = .empty
             }

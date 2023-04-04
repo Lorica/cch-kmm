@@ -14,6 +14,8 @@
 		751F363F29D55D8B00AFEFF6 /* GitCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 751F363E29D55D8B00AFEFF6 /* GitCell.swift */; };
 		7525417829DA811300DFA822 /* KMM+.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7525417729DA811300DFA822 /* KMM+.swift */; };
 		7555FF83242A565900829871 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = 7555FF82242A565900829871 /* ContentView.swift */; };
+		758E140B29DBE41C00391B3D /* FavToggle.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758E140A29DBE41C00391B3D /* FavToggle.swift */; };
+		758E140D29DBE51F00391B3D /* CellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 758E140C29DBE51F00391B3D /* CellViewModel.swift */; };
 		75A1B15829D3C6E600DFAF29 /* shared.xcframework in Frameworks */ = {isa = PBXBuildFile; fileRef = 75A1B15729D3C6E600DFAF29 /* shared.xcframework */; };
 		75A1B15A29D3C7D500DFAF29 /* ContentViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A1B15929D3C7D500DFAF29 /* ContentViewModel.swift */; };
 		75A1B16029D4FC9C00DFAF29 /* GithubManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 75A1B15F29D4FC9C00DFAF29 /* GithubManager.swift */; };
@@ -42,6 +44,8 @@
 		7555FF7B242A565900829871 /* iosApp.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = iosApp.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		7555FF82242A565900829871 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
 		7555FF8C242A565B00829871 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		758E140A29DBE41C00391B3D /* FavToggle.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FavToggle.swift; sourceTree = "<group>"; };
+		758E140C29DBE51F00391B3D /* CellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CellViewModel.swift; sourceTree = "<group>"; };
 		75A1B15729D3C6E600DFAF29 /* shared.xcframework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.xcframework; name = shared.xcframework; path = ../shared/build/XCFrameworks/debug/shared.xcframework; sourceTree = "<group>"; };
 		75A1B15929D3C7D500DFAF29 /* ContentViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentViewModel.swift; sourceTree = "<group>"; };
 		75A1B15F29D4FC9C00DFAF29 /* GithubManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GithubManager.swift; sourceTree = "<group>"; };
@@ -87,16 +91,16 @@
 		7555FF7D242A565900829871 /* iosApp */ = {
 			isa = PBXGroup;
 			children = (
+				758E140929DBE3FC00391B3D /* Views */,
 				058557BA273AAA24004C7B11 /* Assets.xcassets */,
-				7555FF82242A565900829871 /* ContentView.swift */,
 				7555FF8C242A565B00829871 /* Info.plist */,
 				2152FB032600AC8F00CF470E /* iOSApp.swift */,
 				058557D7273AAEEB004C7B11 /* Preview Content */,
 				75A1B15929D3C7D500DFAF29 /* ContentViewModel.swift */,
 				75A1B15F29D4FC9C00DFAF29 /* GithubManager.swift */,
 				751F363C29D53ECD00AFEFF6 /* CellModel.swift */,
-				751F363E29D55D8B00AFEFF6 /* GitCell.swift */,
 				7525417729DA811300DFA822 /* KMM+.swift */,
+				758E140C29DBE51F00391B3D /* CellViewModel.swift */,
 			);
 			path = iosApp;
 			sourceTree = "<group>";
@@ -107,6 +111,16 @@
 				75A1B15729D3C6E600DFAF29 /* shared.xcframework */,
 			);
 			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		758E140929DBE3FC00391B3D /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				7555FF82242A565900829871 /* ContentView.swift */,
+				751F363E29D55D8B00AFEFF6 /* GitCell.swift */,
+				758E140A29DBE41C00391B3D /* FavToggle.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -203,8 +217,10 @@
 			buildActionMask = 2147483647;
 			files = (
 				75A1B16029D4FC9C00DFAF29 /* GithubManager.swift in Sources */,
+				758E140B29DBE41C00391B3D /* FavToggle.swift in Sources */,
 				2152FB042600AC8F00CF470E /* iOSApp.swift in Sources */,
 				751F363F29D55D8B00AFEFF6 /* GitCell.swift in Sources */,
+				758E140D29DBE51F00391B3D /* CellViewModel.swift in Sources */,
 				7555FF83242A565900829871 /* ContentView.swift in Sources */,
 				751F363D29D53ECD00AFEFF6 /* CellModel.swift in Sources */,
 				7525417829DA811300DFA822 /* KMM+.swift in Sources */,

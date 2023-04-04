@@ -31,10 +31,10 @@ struct ContentView: View {
 	}
     
     @ViewBuilder
-    private func contentView(cellModels: [CellModel]) -> some View {
+    private func contentView(cellModels: [CellViewModel]) -> some View {
         List {
             ForEach(cellModels) { model in
-                GitCell(model: model)
+                GitCell(viewModel: model)
             }
         }
     }

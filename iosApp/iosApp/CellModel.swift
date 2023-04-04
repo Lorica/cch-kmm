@@ -12,7 +12,7 @@ struct CellModel: Identifiable {
     let id: Int
     let name: String
     let forkCount: Int
-    let description: String
+    let description: String?
     let watcherCount: Int
     let avatarUrl: String
     let updatedAt: String

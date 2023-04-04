@@ -78,6 +78,11 @@ extension CellModel {
 class MockFavouritesUseCase: FavouritesUseCase {
     var mockArray: [KotlinInt] = []
     
+    init() {
+        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
+        super.init(githubRepository: githubRepository)
+    }
+    
     override func fetch() -> [KotlinInt] {
         return mockArray
     }
@@ -98,8 +103,13 @@ class MockFavouritesUseCase: FavouritesUseCase {
 class MockFetchGithubReposUseCase: FetchGithubReposUseCase {
     var isCalled: Bool = false
     
+    init() {
+        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
+        super.init(githubRepository: githubRepository)
+    }
+    
     override func invoke() async throws -> BasicResult<NSArray> {
         isCalled = true
-        return BasicResultSuccess(value: [Repo(id: 1, name: "test", forkCount: 2, description: "test", watcherCount: 0, _createdAt: "testDate", _updatedAt: "testDate", owner: Owner(avatarUrl: "testUrl"))])
+        return BasicResultSuccess(value: [MockModel.shared.repo])
     }
 }
