@@ -18,14 +18,16 @@ actual class KeyPantry {
     }
 
     actual fun saveIntArray(key: String, value: Array<Int>) {
-        userDefaults.apply {
-            setObject(value, key)
-            synchronize()
-        }
+        val arrayString = value.joinToString(",")
+        saveString(key, arrayString)
     }
 
     actual fun fetchIntArray(key: String): Array<Int> {
-        return userDefaults.arrayForKey(key) as? Array<Int>? ?: emptyArray()
+        return fetchString(key)
+            ?.split(",")
+            ?.map { it.toInt() }
+            ?.toTypedArray()
+            ?: emptyArray()
     }
 
     actual fun clearAll() {
