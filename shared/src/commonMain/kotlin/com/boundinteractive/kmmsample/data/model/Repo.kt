@@ -7,21 +7,18 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 data class Repo(
-    @SerialName("")
     val id: Int,
-    @SerialName("name")
     val name: String,
     @SerialName("forks_count")
     val forkCount: Int,
     @SerialName("description")
-    val description: String,
+    val description: String? = null,
     @SerialName("watchers")
     val watcherCount: Int,
     @SerialName("created_at")
     private val _createdAt: String,
     @SerialName("updated_at")
     private val _updatedAt: String,
-    @SerialName("owner")
     val owner: Owner,
 ) {
     val avatarUrl = owner.avatarUrl

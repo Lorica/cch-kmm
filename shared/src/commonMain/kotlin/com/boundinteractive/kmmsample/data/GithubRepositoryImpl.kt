@@ -1,5 +1,6 @@
 package com.boundinteractive.kmmsample.data
 
+import co.touchlab.kermit.Logger
 import com.boundinteractive.kmmsample.data.model.Repo
 import io.ktor.client.HttpClient
 import io.ktor.client.call.body
