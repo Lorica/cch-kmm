@@ -27,6 +27,8 @@ kotlin {
         }
     }
 
+    jvm()
+
     sourceSets {
         val ktorVersion = "2.2.4"
         val coroutinesVersion = "1.6.4"
@@ -59,6 +61,7 @@ kotlin {
         }
         val androidMain by getting {
             dependencies { implementation("io.ktor:ktor-client-okhttp:$ktorVersion") }
+
         }
         val androidUnitTest by getting
         val iosX64Main by getting
@@ -81,6 +84,20 @@ kotlin {
             iosX64Test.dependsOn(this)
             iosArm64Test.dependsOn(this)
             iosSimulatorArm64Test.dependsOn(this)
+        }
+        val jvmMain by getting {
+            dependencies {
+                dependencies { implementation("io.ktor:ktor-client-okhttp:$ktorVersion") }
+            }
+        }
+        val jvmTest by getting {
+            dependencies {
+                implementation(kotlin("test-junit"))
+                implementation("junit:junit:4.13.2")
+                implementation("org.jetbrains.kotlinx:kotlinx-coroutines-test:$coroutinesVersion")
+                implementation("com.squareup.okhttp3:mockwebserver:4.10.0")
+                implementation("io.mockk:mockk:1.13.4")
+            }
         }
     }
 }
