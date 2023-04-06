@@ -67,7 +67,6 @@ kotlin {
             dependencies {
                 implementation(kotlin("test-junit"))
                 implementation("junit:junit:4.13.2")
-                implementation("io.mockk:mockk:1.13.4")
             }
         }
         val iosX64Main by getting
