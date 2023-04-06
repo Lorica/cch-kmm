@@ -46,9 +46,9 @@ class GithubRepositoryRestApiTest {
             assertEquals("/orgs/melbournecocoa/repos", request1.path)
 
             repos.run {
-                assertEquals(size, 2)
-                assertEquals(first().id, 9993977)
-                assertEquals(this[1].id, 22910628)
+                assertEquals(2, size)
+                assertEquals(9993977, first().id)
+                assertEquals(22910628, this[1].id)
             }
         }
 
