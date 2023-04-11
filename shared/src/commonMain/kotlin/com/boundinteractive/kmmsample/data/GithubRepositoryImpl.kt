@@ -20,6 +20,7 @@ class GithubRepositoryImpl(
     }
 
     private val client = HttpClient {
+        expectSuccess = true
         install(ContentNegotiation) {
             json(Json {
                 isLenient = true
@@ -30,12 +31,7 @@ class GithubRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun getRepos(): List<Repo> {
-        val response = client.get("${baseUrl}/orgs/melbournecocoa/repos")
-        if (response.status.isSuccess()) {
-            return response.body()
-        } else {
-            throw ServerResponseException(response, response.bodyAsText())
-        }
+        return client.get("${baseUrl}/orgs/melbournecocoa/repos").body()
     }
 
     override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY).toList()
