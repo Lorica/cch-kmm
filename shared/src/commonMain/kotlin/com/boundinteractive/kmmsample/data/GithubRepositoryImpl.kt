@@ -31,7 +31,7 @@ class GithubRepositoryImpl(
 
     @Throws(Exception::class)
     override suspend fun getRepos(): List<Repo> {
-        return client.get("${baseUrl}/orgs/melbournecocoa/repos").body()
+        return client.get("$baseUrl/orgs/melbournecocoa/repos").body()
     }
 
     override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY).toList()
