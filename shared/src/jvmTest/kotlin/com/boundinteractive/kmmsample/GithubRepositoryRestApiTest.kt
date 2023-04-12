@@ -58,7 +58,6 @@ class GithubRepositoryRestApiTest {
             server.enqueue(
                 MockResponse()
                     .setResponseCode(HttpStatusCode.InternalServerError.value)
-                    .setBody(HttpStatusCode.InternalServerError.description)
             )
 
             assertFailsWith(ServerResponseException::class) {
