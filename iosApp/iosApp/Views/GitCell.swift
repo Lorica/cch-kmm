@@ -57,6 +57,8 @@ struct GitCell: View {
 
         }
         .padding(.horizontal, 16)
+        .accessibilityElement(children: .ignore)
+        .accessibilityLabel(viewModel.model.a11yString)
     }
 }
 
