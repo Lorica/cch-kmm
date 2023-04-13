@@ -10,10 +10,10 @@ import Foundation
 
 final class CellViewModel: Identifiable, ObservableObject {
     let model: CellModel
-    private let manager: GithubManager
+    private let manager: AppManagerType
     let isFaved: Bool
     
-    init(model: CellModel, manager: GithubManager) {
+    init(model: CellModel, manager: AppManagerType) {
         self.manager = manager
         self.model = model
         self.isFaved = manager.isFavorite(id: model.id)

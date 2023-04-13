@@ -9,7 +9,7 @@ struct ContentView: View {
         // Would be ideal to have these as part of DI framework
         let favUseCase = FavouritesUseCase(githubRepository: githubRepo)
         let githubUseCase = FetchGithubReposUseCase(githubRepository: githubRepo)
-        let manager = GithubManager(favorites: favUseCase,
+        let manager = AppManager(favorites: favUseCase,
                                     githubFetcher: githubUseCase)
         self._viewModel = StateObject(wrappedValue: ContentViewModel(manager: manager))
     }

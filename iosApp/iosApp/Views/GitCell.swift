@@ -75,10 +75,9 @@ private struct FaveToggleStyle: ToggleStyle {
 
 struct CellView_Previews: PreviewProvider {
     static var previews: some View {
-        let model = CellModel(id: 1, name: "test", forkCount: 1, description: nil, watcherCount: 2, avatarUrl: "https://boundinteractive.com/wp-content/uploads/2022/06/04-Innovation-Futures-Lifeblood-1536x1069.jpg", updatedAt: "test", a11yString: "Test")
-        let manager = GithubManager(favorites: MockFavouritesUseCase(),
-                                    githubFetcher: MockFetchGithubReposUseCase())
-        let viewModel = CellViewModel(model: model, manager: manager)
+        let manager = MockAppManager()
+        let viewModel = CellViewModel(model: CellModel.mock,
+                                      manager: manager)
         GitCell(viewModel: viewModel)
     }
 }

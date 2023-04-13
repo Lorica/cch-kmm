@@ -11,9 +11,9 @@ import Foundation
 @MainActor
 final class ContentViewModel: ObservableObject {
     @Published var viewState: ViewState<[CellViewModel]> = .loading
-    private let manager: GithubManager
+    private let manager: AppManagerType
     
-    init(manager: GithubManager) {
+    init(manager: AppManagerType) {
         self.manager = manager
     }
     
