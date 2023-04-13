@@ -2,14 +2,14 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-    private let githubRepo = GithubRepositoryImpl(keyPantry: KeyPantry())
+    private let githubRepo = GithubRepositoryImpl(keyPantry: KeyPantry(), baseUrl: "https://api.github.com")
     @StateObject private var viewModel: ContentViewModel
     
     init() {
         // Would be ideal to have these as part of DI framework
         let favUseCase = FavouritesUseCase(githubRepository: githubRepo)
         let githubUseCase = FetchGithubReposUseCase(githubRepository: githubRepo)
-        let manager = GithubManager(favorites: favUseCase,
+        let manager = AppManager(favorites: favUseCase,
                                     githubFetcher: githubUseCase)
         self._viewModel = StateObject(wrappedValue: ContentViewModel(manager: manager))
     }

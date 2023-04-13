@@ -9,7 +9,14 @@
 import Foundation
 import shared
 
-struct GithubManager {
+protocol AppManagerType {
+    func loadData() async throws -> [CellModel]?
+    func saveFavorite(id: Int)
+    func unFavorite(id: Int)
+    func isFavorite(id: Int) -> Bool
+}
+
+struct AppManager: AppManagerType {
     private let favUseCase: FavouritesUseCase
     private let githubUseCase: FetchGithubReposUseCase
     
@@ -59,57 +66,5 @@ enum AppError: Error, Hashable, CustomStringConvertible {
         case .generic:
             return "There was a generic error"
         }
-    }
-}
-
-extension CellModel {
-    static func convert(from model: Repo) -> CellModel {
-        return CellModel(id: Int(model.id),
-                         name: model.name,
-                         forkCount: Int(model.forkCount),
-                         description: model.description_,
-                         watcherCount: Int(model.watcherCount),
-                         avatarUrl: model.avatarUrl,
-                         updatedAt: model.updatedAt(),
-                         a11yString: model.accessibilityString)
-    }
-}
-
-class MockFavouritesUseCase: FavouritesUseCase {
-    var mockArray: [KotlinInt] = []
-    
-    init() {
-        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
-        super.init(githubRepository: githubRepository)
-    }
-    
-    override func fetch() -> [KotlinInt] {
-        return mockArray
-    }
-    
-    override func add(id: Int32) {
-        mockArray.append(KotlinInt(int: id))
-    }
-    
-    override func remove(id: Int32) {
-        mockArray.removeAll { i in i == KotlinInt(int: id) }
-    }
-    
-    override func removeAll() {
-        mockArray.removeAll()
-    }
-}
-
-class MockFetchGithubReposUseCase: FetchGithubReposUseCase {
-    var isCalled: Bool = false
-    
-    init() {
-        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
-        super.init(githubRepository: githubRepository)
-    }
-    
-    override func invoke() async throws -> BasicResult<NSArray> {
-        isCalled = true
-        return BasicResultSuccess(value: [MockModel.shared.repo])
     }
 }
