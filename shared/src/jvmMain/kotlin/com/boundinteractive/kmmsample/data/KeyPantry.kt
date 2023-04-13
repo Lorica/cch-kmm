@@ -5,19 +5,11 @@ actual class KeyPantry {
         return null
     }
 
-    actual fun saveString(key: String, value: String?) {
-        /* no-op */
+    actual fun saveString(key: String, value: String?): Boolean {
+        return true
     }
 
-    actual fun saveIntArray(key: String, value: Array<Int>) {
-        /* no-op */
-    }
-
-    actual fun fetchIntArray(key: String): Array<Int> {
-        return emptyArray()
-    }
-
-    actual fun clearAll() {
-        /* no-op */
+    actual fun clearAll(): Boolean {
+        return true
     }
 }

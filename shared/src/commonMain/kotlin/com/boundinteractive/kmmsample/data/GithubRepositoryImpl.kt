@@ -1,6 +1,8 @@
 package com.boundinteractive.kmmsample.data
 
 import com.boundinteractive.kmmsample.data.model.Repo
+import com.boundinteractive.kmmsample.util.JsonUtil.decodeFromString
+import com.boundinteractive.kmmsample.util.JsonUtil.toJson
 import io.ktor.client.*
 import io.ktor.client.call.*
 import io.ktor.client.plugins.*
@@ -34,23 +36,26 @@ class GithubRepositoryImpl(
         return client.get("$baseUrl/orgs/melbournecocoa/repos").body()
     }
 
-    override fun getFavourites() = keyPantry.fetchIntArray(FAVOURITES_KEY).toList()
+    override fun getFavourites() = getFavouritesFromStorage().toList()
 
     override fun addToFavourites(id: Int) {
-        val favourites = keyPantry.fetchIntArray(FAVOURITES_KEY).toMutableList()
+        val favourites = getFavouritesFromStorage()
         favourites.add(id)
 
-        keyPantry.saveIntArray(FAVOURITES_KEY, favourites.toTypedArray())
+        keyPantry.saveString(FAVOURITES_KEY, favourites.toJson())
     }
 
     override fun removeFromFavourites(id: Int) {
-        val favourites = keyPantry.fetchIntArray(FAVOURITES_KEY).toMutableList()
+        val favourites = getFavouritesFromStorage()
         favourites.remove(id)
 
-        keyPantry.saveIntArray(FAVOURITES_KEY, favourites.toTypedArray())
+        keyPantry.saveString(FAVOURITES_KEY, favourites.toJson())
     }
 
     override fun removeAllFavourites() {
-        keyPantry.saveIntArray(FAVOURITES_KEY, emptyArray())
+        keyPantry.saveString(FAVOURITES_KEY, emptyArray<Int>().toJson())
     }
+
+    private fun getFavouritesFromStorage() = keyPantry.fetchString(FAVOURITES_KEY)
+        ?.decodeFromString<MutableList<Int>>() ?: mutableListOf()
 }
