@@ -11,7 +11,7 @@ actual class KeyPantry(context: Context) {
             .getString(key, null)
     }
 
-    actual fun saveString(key: String, value: String) {
+    actual fun saveString(key: String, value: String?) {
         sharedPreferences
             .edit()
             .putString(key, value)

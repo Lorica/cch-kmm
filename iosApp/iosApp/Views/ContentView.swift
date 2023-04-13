@@ -2,7 +2,7 @@ import SwiftUI
 import shared
 
 struct ContentView: View {
-    private let githubRepo = GithubRepositoryImpl(keyPantry: KeyPantry())
+    private let githubRepo = GithubRepositoryImpl(keyPantry: KeyPantry(), baseUrl: "https://api.github.com")
     @StateObject private var viewModel: ContentViewModel
     
     init() {

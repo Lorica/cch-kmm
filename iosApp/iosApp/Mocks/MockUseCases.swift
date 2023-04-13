@@ -13,7 +13,7 @@ class MockFavouritesUseCase: FavouritesUseCase {
     var mockArray: [KotlinInt] = []
     
     init() {
-        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
+        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry(), baseUrl: "https://test.com")
         super.init(githubRepository: githubRepository)
     }
     
@@ -38,7 +38,7 @@ class MockFetchGithubReposUseCase: FetchGithubReposUseCase {
     var isCalled: Bool = false
     
     init() {
-        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry())
+        let githubRepository = GithubRepositoryImpl(keyPantry: KeyPantry(), baseUrl: "https://test.com")
         super.init(githubRepository: githubRepository)
     }
     

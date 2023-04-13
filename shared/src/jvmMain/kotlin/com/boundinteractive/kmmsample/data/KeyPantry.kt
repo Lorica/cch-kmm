@@ -5,7 +5,7 @@ actual class KeyPantry {
         return null
     }
 
-    actual fun saveString(key: String, value: String) {
+    actual fun saveString(key: String, value: String?) {
         /* no-op */
     }
 
